@@ -33,12 +33,15 @@
 ## 命令
 ### 添加bucket
 ```node add_bucket.js {bucket名称}```
+
 例如`node add_bucket.js abc`会在OSS上创建一个abc的bucket，并且设置访问类型为公共读，设置静态访问的文件为index.html
 
 ### 绑定域名
 ```php binddomain.php {bucket名称} {域名}```
+
 例如`php binddomain.php abc abc.domain.com`会给刚才创建的`abc`bucket绑定域名`abc.domain.com`
 
 ### 域名解析
 ```node dns.js {记录值} {bucket名称}```
+
 例如`node dns.js abc abc`会给`domain.com`域名创建一个值为`abc`的CNAME记录指向`abc`这个bucket
