@@ -1,6 +1,6 @@
 const Core = require('@alicloud/pop-core')
 
-const { accessKeyId, accessKeySecret, DomainName, bucketRegion } = require('./env.json')
+const { accessKeyId, accessKeySecret, bucketRegion } = require('./env.json').dns
 
 var client = new Core({
     accessKeyId,
@@ -11,11 +11,11 @@ var client = new Core({
 
 const args = process.argv.slice(2)
 
-const [pr, bucket] = args
+const [pr, domainName, bucket] = args
 
 var params = {
     "RegionId": "cn-hangzhou",
-    "DomainName": DomainName,
+    "DomainName": domainName,
     "RR": pr,
     "Type": "CNAME",
     "Value": `${bucket}.${bucketRegion}.aliyuncs.com`
@@ -26,9 +26,9 @@ var requestOption = {
 };
 
 client.request('AddDomainRecord', params, requestOption).then((result) => {
-    console.log(`添加纪录${pr}.${DomainName}成功`)
+    console.log(`添加纪录${pr}.${domainName}成功`)
     console.log(JSON.stringify(result))
 }, (ex) => {
-    console.log(`添加纪录${pr}.${DomainName}失败`)
+    console.log(`添加纪录${pr}.${domainName}失败`)
     console.log(ex)
 })
