@@ -24,7 +24,6 @@
     "dns": {
         "accessKeyId": "",
         "accessKeySecret": "",
-        "DomainName": "", // 这里填的是顶级域名的部分，abc.com，不要带www或者任何通配符
         "bucketRegion": "" // 这个和bucket的region是同一个值
     }
 }
@@ -42,6 +41,6 @@
 例如`php binddomain.php abc abc.domain.com`会给刚才创建的`abc`bucket绑定域名`abc.domain.com`
 
 ### 域名解析
-```node dns.js {记录值} {bucket名称}```
+```node dns.js {记录值} {域名} {bucket名称}```
 
-例如`node dns.js abc abc`会给`domain.com`域名创建一个值为`abc`的CNAME记录指向`abc`这个bucket
+例如`node dns.js abc domain.com abc`会给`domain.com`域名创建一个值为`abc`的CNAME记录指向`abc`这个bucket
