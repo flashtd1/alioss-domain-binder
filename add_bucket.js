@@ -11,14 +11,14 @@ const store = oss({
 
 const args = process.argv.slice(2)
 
-const [bucket] = args
+const [newBucket] = args
 
 // request
-store.putBucket(bucket, {
+store.putBucket(newBucket, {
     acl: 'public-read',
 }).then(({ res }) => {
-    console.log(`创建bucket：${bucket}`, res.status)
-    store.putBucketWebsite(bucket, {
+    console.log(`创建bucket：${newBucket}`, res.status)
+    store.putBucketWebsite(newBucket, {
         index: 'index.html',
         error: 'index.html'
     }).then(({ res }) => {
@@ -27,7 +27,7 @@ store.putBucket(bucket, {
         console.log('开启静态网站失败', e)
     })
 }).catch((e) => {
-    console.log(`创建bucket：${bucket}失败`, e)
+    console.log(`创建bucket：${newBucket}失败`, e)
 })
 
 
